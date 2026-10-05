@@ -3,15 +3,16 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-kv_t *kv_init(size_t capacity) {
-	kv_t db = (kv_t){
-		.entries = NULL,
-		.capacity = capacity,
-		.count = 0
-	};
+kv_t* kv_init(size_t capacity) {
+	kv_t* db = (kv_t*)malloc(sizeof(kv_t));
+	if (db == NULL)
+		return NULL;
+	db->entries = NULL;
+	db->capacity = capacity;
+	db->count = 0;
 
-	db.entries = (kv_entry_t*)malloc(sizeof(kv_entry_t) * capacity);
-	if (db.entries == NULL)
+	db->entries = (kv_entry_t*)malloc(sizeof(kv_entry_t) * capacity);
+	if (db->entries == NULL)
 		return NULL;
 
 	return db;
