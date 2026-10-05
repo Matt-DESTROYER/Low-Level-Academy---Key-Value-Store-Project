@@ -1,26 +1,34 @@
-#include "kv_store.h"
+#include "kv.h"
 
 #include <stddef.h>
 #include <stdlib.h>
 
 kv_t *kv_init(size_t capacity) {
-	kv_t kv = (kv_t){
+	kv_t db = (kv_t){
 		.entries = NULL,
 		.capacity = capacity,
 		.count = 0
 	};
 
-	kv.entries = (kv_entry_t*)malloc(sizeof(kv_entry_t) * capacity);
-	if (kv.entries == NULL)
+	db.entries = (kv_entry_t*)malloc(sizeof(kv_entry_t) * capacity);
+	if (db.entries == NULL)
 		return NULL;
 
-	return kv;
+	return db;
 }
 
-int kv_put(kv_t *db, const char *key, const char *value) {}
+int kv_put(kv_t* db, const char* key, const char* value) {
+	return 0;
+}
 
-char *kv_get(kv_t *db, const char *key) {}
+char* kv_get(kv_t* db, const char* key) {
+	return NULL;
+}
 
-int kv_delete(kv_t *db, const char *key) {}
+int kv_delete(kv_t* db, const char* key) {
+	return 0;
+}
 
-void kv_free(kv_t *db) {}
+void kv_free(kv_t* db) {
+	free(db->entries);
+}
